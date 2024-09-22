@@ -464,7 +464,7 @@ headlessService:
   merge: {}
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}-headless"
-  name: nats-service-discovery
+  name: 
 
 # config map
 configMap:
