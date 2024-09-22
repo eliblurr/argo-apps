@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-    - 'https://github.com/eliblurr/argo-apps/**'
+    - 'https://github.com/eliblurr/**'
   destinations:
   # Do not allow any app to be installed in `kube-system`  
     - namespace: '!kube-system'
