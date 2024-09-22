@@ -5,7 +5,7 @@ metadata:
   name: cert-manager
   namespace: argocd
 spec:
-  project: in-cluster-apps
+  project: global
   sources:
     - chart: cert-manager
       repoURL: https://charts.jetstack.io

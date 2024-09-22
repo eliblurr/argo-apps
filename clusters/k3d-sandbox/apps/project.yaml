@@ -16,3 +16,17 @@ spec:
       server: '*'
     - namespace: '*'
       server: '*'
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: global
+  namespace: argocd
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+      name: 'global'
