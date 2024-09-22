@@ -382,10 +382,10 @@ podTemplate:
   # merge or patch the pod template
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
   merge: {}
-  patch:
-    - metadata:
-      annotations: 
-        - my-custom-annotation: unused
+  patch: 
+    - op: add
+      path: /metadata/annotations/test-annotation"
+      value: "new-value"
 
 # headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
