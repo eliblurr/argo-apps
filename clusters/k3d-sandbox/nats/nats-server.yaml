@@ -198,19 +198,22 @@ config:
   # }
   merge: 
     authorization:
-      << default_permissions >>:
+      DEFAULT:
         publish: SANDBOX.*
         subscribe: 
           - PUBLIC.>
           - _INBOX.>
           - SANDBOX.*
-      << ADMIN >>:
+      ADMIN:
         publish: ">"
         subscribe: ">"
       users: 
         - user: test
           password: test
-          permissions: $default_permissions
+          permissions: << $DEFAULT >>
+        - user: admin
+          password: $ADMIN_PASS
+          permissions: << $ADMIN >>
   patch: []
 
 ############################################################
