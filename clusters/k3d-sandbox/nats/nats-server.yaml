@@ -204,7 +204,7 @@ config:
           - PUBLIC.>
           - _INBOX.>
           - SANDBOX.*
-      ADMIN:
+      << ADMIN >>:
         publish: ">"
         subscribe: ">"
       users: 
