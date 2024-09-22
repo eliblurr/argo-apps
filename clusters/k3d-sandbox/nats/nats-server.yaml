@@ -288,61 +288,19 @@ reloader:
   patch: []
 
 ############################################################
-# stateful set -> pod template -> prom-exporter container
-############################################################
-# config.monitor must be enabled
-promExporter:
-  enabled: false
-  image:
-    repository: natsio/prometheus-nats-exporter
-    tag: 0.15.0
-    pullPolicy:
-    registry:
-
-  port: 7777
-  # env var map, see nats.env for an example
-  env: {}
-
-  # merge or patch the container
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
-  merge: {}
-  patch: []
-
-  ############################################################
-  # prometheus pod monitor
-  ############################################################
-  podMonitor:
-    enabled: false
-
-    # merge or patch the pod monitor
-    # https://prometheus-operator.dev/docs/operator/api/#monitoring.coreos.com/v1.PodMonitor
-    merge: {}
-    patch: []
-    # defaults to "{{ include "nats.fullname" $ }}"
-    name:
-
-
-############################################################
 # service
 ############################################################
 service:
   enabled: true
-
-  # service port options
-  # additional boolean field enable to control whether port is exposed in the service
-  # must be enabled in the config section also
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceport-v1-core
   ports:
     nats:
       enabled: true
     monitor:
       enabled: true
-    leafnodes:
-      enabled: false
     cluster:
-      enabled: true
+      enabled: false
     websocket:
-      enabled: true
+      enabled: false
 
   # merge or patch the service
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#service-v1-core
@@ -354,7 +312,6 @@ service:
 ############################################################
 # other nats extension points
 ############################################################
-
 # stateful set
 statefulSet:
   # merge or patch the stateful set
