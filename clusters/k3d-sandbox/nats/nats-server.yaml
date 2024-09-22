@@ -8,10 +8,6 @@ global:
     registry:
   # global labels will be applied to all resources deployed by the chart
   labels: {}
-  patch:
-    - metadata:
-      annotations: 
-        - mu-custom-annotation: un-used
 
 ################################################################################
 # Common options
@@ -455,7 +451,10 @@ podTemplate:
   # merge or patch the pod template
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
   merge: {}
-  patch: []
+  patch:
+    - metadata:
+      annotations: 
+        - my-custom-annotation: unused
 
 # headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
