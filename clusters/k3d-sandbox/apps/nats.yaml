@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nats
+  namespace: argocd
+spec:
+  project: in-cluster-apps
+  sources:
+    - chart: nats/nats
+      repoURL: https://nats-io.github.io/k8s/helm/charts/
+      targetRevision: 1.16.1
+      helm:
+        releaseName: nats
+        valueFiles:
+          - $repo/k3d-sandbox/nats/nats-server.yaml
+    - repoURL: https://github.com/eliblurr/argo-apps.git
+      targetRevision: main
+      ref: repo
+      path: clusters/k3d-sandbox/nats
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: 'in-cluster'
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nats
+  namespace: argocd
+spec:
+  project: in-cluster-apps
+  source:
+    repoURL: https://github.com/eliblurr/argo-apps.git
+    targetRevision: main
+    path: clusters/k3d-sandbox/nats
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: 'in-cluster'
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - Validate=false
