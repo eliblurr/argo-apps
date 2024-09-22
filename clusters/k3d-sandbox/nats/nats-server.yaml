@@ -43,7 +43,7 @@ config:
     # apply to generated route URLs that connect to other pods in the StatefulSet
     routeURLs:
       # if both user and password are set, they will be added to route URLs
-      # and the cluster authorization block
+      # and the cluster authorization block # not needed for in-cluster communication
       user:
       password:
       # set to true to use FQDN in route URLs
@@ -392,7 +392,7 @@ headlessService:
   # defaults to "{{ include "nats.fullname" $ }}-headless"
   name: nats-discovery
 
-# config map
+# config map; this map is used to create nats.config
 configMap:
   # merge or patch the config map
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#configmap-v1-core
@@ -577,3 +577,4 @@ natsBox:
 #                 {{ .Values.config.websocket.port }}
 #
 extraResources: []
+# USE local cert issuer to generate cert bundle
