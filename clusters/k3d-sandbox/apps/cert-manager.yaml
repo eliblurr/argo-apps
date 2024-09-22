@@ -19,9 +19,9 @@ spec:
         parameters:
           - name: installCRDs
             value: 'true'
-    # - repoURL: https://github.com/eliblurr/argo-apps.git
-    #   targetRevision: main 
-    #   path: clusters/k3d-sandbox/cert-manager
+    - repoURL: https://github.com/eliblurr/argo-apps.git
+      targetRevision: main 
+      path: clusters/k3d-sandbox/cert-manager
   destination:
     server: https://kubernetes.default.svc
     namespace: 'cert-manager'
