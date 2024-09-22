@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: nats
         valueFiles:
-          - $repo/k3d-sandbox/nats/nats-server.yaml
+          - $repo/clusters/k3d-sandbox/nats/nats-server.yaml
     - repoURL: https://github.com/eliblurr/argo-apps.git
       targetRevision: main
       ref: repo
