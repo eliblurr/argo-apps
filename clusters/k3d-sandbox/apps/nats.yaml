@@ -18,10 +18,10 @@ spec:
         releaseName: nats
         valueFiles:
           - $repo/clusters/k3d-sandbox/nats/nats-server.yaml
-    - repoURL: https://github.com/eliblurr/argo-apps.git
-      targetRevision: main
-      ref: repo
-      path: clusters/k3d-sandbox/nats
+    # - repoURL: https://github.com/eliblurr/argo-apps.git
+    #   targetRevision: main
+    #   ref: repo
+    #   path: clusters/k3d-sandbox/nats
   destination:
     server: https://kubernetes.default.svc
     namespace: 'nats'
