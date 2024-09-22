@@ -198,11 +198,18 @@ config:
   # }
   merge: 
     authorization:
-      # token: $2a$11$ScPK1IPD6tkKyxUiNLSL3ulogGzaXmVsCtGChur/lRXQG0G8hx0A6
+      default_permissions:
+        publish: SANDBOX.*
+        subscribe: 
+          - PUBLIC.>
+          - _INBOX.>
+          - SANDBOX.*
+      ADMIN:
+        publish: ">"
+        subscribe: ">"
       users: 
         - user: a
           password: a 
-        # token: << $TOKEN >>
   patch: []
 
 ############################################################
