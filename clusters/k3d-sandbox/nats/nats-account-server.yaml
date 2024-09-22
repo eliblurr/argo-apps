@@ -23,14 +23,14 @@ store:
 
 # NATS Server connection settings.
 nats:
-  # # NATS Service to which we can connect.
+  # NATS Service to which we can connect.
   url: "nats://nats:4222"
   #
-  # # Credentials to connect to the NATS Server.
-  # credentials:
-  #   secret:
-  #     name: nats-sys-creds
-  #     key: sys.creds
+  # Credentials to connect to the NATS Server.
+  credentials:
+    secret:
+      name: nats-sys-creds
+      key: sys.creds
 
 # Trusted Operator mode settings.
 # operator:
