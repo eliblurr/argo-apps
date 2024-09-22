@@ -1,4 +1,3 @@
 resources:
   - ./pub.yaml
   - ./sub.yaml
-  - ./namespace.yaml
