@@ -8,6 +8,10 @@ global:
     registry:
   # global labels will be applied to all resources deployed by the chart
   labels: {}
+  patch:
+    - metadata:
+      annotations: 
+        - mu-custom-annotation: un-used
 
 ################################################################################
 # Common options
@@ -36,7 +40,7 @@ tlsCA:
 config:
   cluster:
     enabled: true
-    port: 6222
+    port: 6222 # This is the port that the NATS servers use to communicate with each other within the cluster
     # must be 2 or higher when jetstream is enabled
     replicas: 3
 
@@ -61,12 +65,7 @@ config:
       # https://docs.nats.io/running-a-nats-service/configuration/securing_nats/tls
       merge: {}
       patch: []
-
-    # merge or patch the cluster config
-    # https://docs.nats.io/running-a-nats-service/configuration/clustering/cluster_config
-    merge: {}
-    patch: []
-
+        
   jetstream:
     enabled: false
 
@@ -111,11 +110,8 @@ config:
       dir: /etc/nats-certs/nats
       cert: tls.crt
       key: tls.key
-      # merge or patch the tls config
-      # https://docs.nats.io/running-a-nats-service/configuration/securing_nats/tls
-      merge: {}
-      patch: []
 
+  # NOT NEEDED
   leafnodes:
     enabled: false
     port: 7422
@@ -178,6 +174,7 @@ config:
     merge: {}
     patch: []
 
+  # NOT NEEDED
   mqtt:
     enabled: false
     port: 1883
@@ -198,6 +195,7 @@ config:
     merge: {}
     patch: []
 
+  # NOT NEEDED
   gateway:
     enabled: false
     port: 7222
