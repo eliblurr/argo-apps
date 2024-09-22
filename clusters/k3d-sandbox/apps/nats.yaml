@@ -19,7 +19,7 @@ spec:
       path: clusters/k3d-sandbox/nats
   destination:
     server: https://kubernetes.default.svc
-    namespace: 'in-cluster'
+    namespace: 'nats'
   syncPolicy:
     automated:
       prune: false
