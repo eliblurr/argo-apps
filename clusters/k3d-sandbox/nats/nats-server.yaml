@@ -177,7 +177,7 @@ config:
   #
   #   merge:
   #     $include: ./my-config.conf
-  #     zzz$include: ./my-config-last.conf
+  #     $include: ./my-config-last.conf
   #     server_name: nats
   #     authorization:
   #       token: << $TOKEN >>
@@ -198,7 +198,10 @@ config:
   # }
   merge: 
     authorization:
-      token: << $TOKEN >>
+      users: 
+        - user: a
+          password: a
+        # token: << $TOKEN >>
   patch: []
 
 ############################################################
