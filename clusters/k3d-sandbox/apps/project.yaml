@@ -9,5 +9,5 @@ spec:
     - 'https://github.com/eliblurr/argo-apps/**'
   destinations:
   # Do not allow any app to be installed in `kube-system`  
-  - namespace: '!kube-system'
-    name: 'in-cluster'
+    - namespace: '!kube-system'
+      name: 'in-cluster'
