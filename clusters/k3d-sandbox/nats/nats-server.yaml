@@ -3,15 +3,8 @@
 ################################################################################
 global:
   image:
-    # global image pull policy to use for all container images in the chart
-    # can be overridden by individual image pullPolicy
     pullPolicy:
-    # global list of secret names to use as image pull secrets for all pod specs in the chart
-    # secrets must exist in the same namespace
-    # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     pullSecretNames: []
-    # global registry to use for all container images in the chart
-    # can be overridden by individual image registry
     registry:
 
   # global labels will be applied to all resources deployed by the chart
@@ -20,12 +13,10 @@ global:
 ################################################################################
 # Common options
 ################################################################################
-# override name of the chart
-nameOverride:
-# override full name of the chart+release
-fullnameOverride:
+nameOverride: nats
+fullnameOverride: nats
 # override the namespace that resources are installed into
-namespaceOverride:
+namespaceOverride: 
 
 # reference a common CA Certificate or Bundle in all nats config `tls` blocks and nats-box contexts
 # note: `tls.verify` still must be set in the appropriate nats config `tls` blocks to require mTLS
@@ -40,16 +31,12 @@ tlsCA:
   # key in the configMap or secret that contains the CA Certificate or Bundle
   key: ca.crt
 
-################################################################################
-# NATS Stateful Set and associated resources
-################################################################################
-
 ############################################################
 # NATS config
 ############################################################
 config:
   cluster:
-    enabled: false
+    enabled: true
     port: 6222
     # must be 2 or higher when jetstream is enabled
     replicas: 3
