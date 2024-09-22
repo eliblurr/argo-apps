@@ -6,7 +6,6 @@ global:
     pullPolicy:
     pullSecretNames: []
     registry:
-
   # global labels will be applied to all resources deployed by the chart
   labels: {}
 
@@ -51,7 +50,7 @@ config:
       useFQDN: false
       k8sClusterDomain: cluster.local
 
-    tls:
+    tls: # secure cluster communication, use CRD in BH cluster to create secret and reference here
       enabled: false
       # set secretName in order to mount an existing secret to dir
       secretName:
@@ -412,7 +411,7 @@ service:
     mqtt:
       enabled: true
     cluster:
-      enabled: false
+      enabled: true
     gateway:
       enabled: false
     monitor:
