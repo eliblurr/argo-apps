@@ -459,14 +459,12 @@ podTemplate:
   merge: {}
   patch: []
 
-# headless service
+# headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
-  # merge or patch the headless service
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#service-v1-core
   merge: {}
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}-headless"
-  name:
+  name: service-discovery
 
 # config map
 configMap:
