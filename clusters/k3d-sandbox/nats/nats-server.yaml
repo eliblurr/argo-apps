@@ -353,12 +353,12 @@ headlessService:
 configMap:
   # merge or patch the config map
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#configmap-v1-core
-  merge:
-    authorization:
-      users: [
-        {user: a, password: b},
-        {user: b, password: a}
-      ]
+  merge: {}
+    # authorization:
+    #   users: [
+    #     {user: a, password: b},
+    #     {user: b, password: a}
+    #   ]
 
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}-config"
