@@ -204,6 +204,7 @@ config:
         subscribe: 
           - PUBLIC.>
           - _INBOX.>
+          - SANDBOX.>
       ADMIN:
         publish: ">"
         subscribe: ">"
