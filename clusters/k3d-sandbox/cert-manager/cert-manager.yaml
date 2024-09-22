@@ -9,4 +9,7 @@ spec:
     email: test@mail.com  # Your email for Let's Encrypt account
     privateKeySecretRef:
       name: ca-issuer-key  # Cert-Manager will create this secret
-    solvers: []
+    solvers: 
+      - http01:
+        ingress:
+          class: nginx 
