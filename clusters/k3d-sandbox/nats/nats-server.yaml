@@ -255,11 +255,11 @@ container:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: {}
   patch: 
-    - op: add
-      path: /envFrom/
-      value: 
-        - secretRef:
-            name: nats-client-passwords
+    # - op: add
+    #   path: /envFrom/-
+    #   value: 
+    #     secretRef:
+    #       name: nats-client-passwords
 
 ############################################################
 # stateful set -> pod template -> reloader container
