@@ -12,7 +12,7 @@ spec:
     path: clusters/k3d-sandbox/whoami
   destination:
     server: https://kubernetes.default.svc
-    namespace: 'in-cluster'
+    namespace: 'default'
   syncPolicy:
     automated:
       prune: false
