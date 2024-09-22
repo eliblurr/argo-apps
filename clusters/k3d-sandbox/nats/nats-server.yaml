@@ -199,7 +199,7 @@ config:
   # read about authorisation: https://docs.nats.io/running-a-nats-service/configuration/securing_nats/authorization
   merge: 
     authorization:
-      DEFAULT:
+      default_permissions: # special entry - applies to all users that don't have specific permissions set
         publish: SANDBOX.*
         subscribe: 
           - PUBLIC.>
@@ -210,7 +210,6 @@ config:
       users: 
         - user: test
           password: << $TEST_PASS >>
-          permissions: << $DEFAULT >>
         - user: admin
           password: << $ADMIN_PASS >>
           permissions: << $ADMIN >>
@@ -250,16 +249,8 @@ container:
   #           name: nats-auth
   #           key: token
   env: 
-    ADMIN_PASS:
-      valueFrom:
-        secretKeyRef:
-          name: nats-client-passwords
-          key: ADMIN_PASS
-    TEST_PASS:
-      valueFrom:
-        secretKeyRef:
-          name: nats-client-passwords
-          key: TEST_PASS
+    TEST_PASS: changemenow
+    ADMIN_PASS: changemenow
 
   # merge or patch the container
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
@@ -270,11 +261,6 @@ container:
       value: 
         name: test
         value: test
-    # - op: add
-    #   path: /envFrom/-
-    #   value: 
-    #     - secretRef:
-    #         name: nats-client-passwords
 
 ############################################################
 # stateful set -> pod template -> reloader container
