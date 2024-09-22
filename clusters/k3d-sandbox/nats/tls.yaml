@@ -4,7 +4,7 @@ metadata:
   name: nats-tls
 spec:
   secretName: nats-tls  # Cert-Manager will create this secret for the certificate
-  # commonName: my-app.example.com
+  commonName: nats.io
   # dnsNames:
   # - my-app.example.com
   issuerRef:
