@@ -198,7 +198,7 @@ config:
   # }
   merge: 
     authorization:
-      token: $2a$11$ScPK1IPD6tkKyxUiNLSL3ulogGzaXmVsCtGChur/lRXQG0G8hx0A6
+      # token: $2a$11$ScPK1IPD6tkKyxUiNLSL3ulogGzaXmVsCtGChur/lRXQG0G8hx0A6
       users: 
         - user: a
           password: a 
@@ -338,13 +338,6 @@ configMap:
   # merge or patch the config map
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#configmap-v1-core
   merge: {}
-    # authorization: {
-    #   users: [
-    #     {user: a, password: b},
-    #     {user: b, password: a}
-    #   ]
-    # }
-
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}-config"
   name:
