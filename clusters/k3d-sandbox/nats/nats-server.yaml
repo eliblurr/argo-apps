@@ -208,8 +208,9 @@ config:
         publish: ">"
         subscribe: ">"
       users: 
-        - user: a
-          password: a 
+        - user: test
+          password: test
+          permissions: $default_permissions
   patch: []
 
 ############################################################
