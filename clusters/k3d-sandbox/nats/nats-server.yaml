@@ -339,10 +339,10 @@ podTemplate:
       path: /metadata/annotations/test-annotation
       value: "new-value"
     - op: add
-      path: /spec/containers/0/envFrom/-
+      path: /spec/containers/0/envFrom/
       value: 
-        secretRef:
-          name: nats-client-passwords
+        - secretRef:
+            name: nats-client-passwords
 
 # headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
