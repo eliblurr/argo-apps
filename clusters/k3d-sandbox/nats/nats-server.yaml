@@ -254,7 +254,12 @@ container:
   # merge or patch the container
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: {}
-  patch: []
+  patch: 
+    - op: add
+      path: /envFrom/
+      value: 
+        - secretRef:
+            name: nats-client-passwords
 
 ############################################################
 # stateful set -> pod template -> reloader container
@@ -338,25 +343,11 @@ podTemplate:
     - op: add
       path: /metadata/annotations/test-annotation
       value: "new-value"
-    - op: add
-      path: /spec/containers/0/envFrom/
-      value: 
-        - secretRef:
-            name: nats-client-passwords
 
 # headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
   # defaults to "{{ include "nats.fullname" $ }}-headless"
   name: nats-discovery
-
-# config map; 
-configMap:
-  # merge or patch the config map
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#configmap-v1-core
-  merge: {}
-  patch: [] # 
-  # defaults to "{{ include "nats.fullname" $ }}-config"
-  name:
 
 # pod disruption budget
 podDisruptionBudget:
@@ -377,7 +368,6 @@ serviceAccount:
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}"
   name:
-
 
 ############################################################
 # natsBox
