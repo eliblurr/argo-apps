@@ -339,7 +339,7 @@ podTemplate:
       path: /metadata/annotations/test-annotation
       value: "new-value"
     - op: add
-      path: /spec/template/spec/containers/0/envFrom/-
+      path: /spec/containers/0/envFrom/-
       value: 
         secretRef:
           name: nats-client-passwords
