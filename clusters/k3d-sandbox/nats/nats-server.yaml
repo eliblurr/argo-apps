@@ -249,17 +249,32 @@ container:
   #         secretKeyRef:
   #           name: nats-auth
   #           key: token
-  env: {}
+  env: 
+    ADMIN_PASS:
+      valueFrom:
+        secretKeyRef:
+          name: nats-client-passwords
+          key: ADMIN_PASS
+    TEST_PASS:
+      valueFrom:
+        secretKeyRef:
+          name: nats-client-passwords
+          key: TEST_PASS
 
   # merge or patch the container
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: {}
   patch: 
     - op: add
-      path: /envFrom/-
+      path: /env/-
       value: 
-        secretRef:
-          name: nats-client-passwords
+        name: test
+        value: test
+    # - op: add
+    #   path: /envFrom/-
+    #   value: 
+    #     - secretRef:
+    #         name: nats-client-passwords
 
 ############################################################
 # stateful set -> pod template -> reloader container
