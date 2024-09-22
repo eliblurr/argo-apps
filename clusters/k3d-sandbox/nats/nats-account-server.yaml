@@ -33,15 +33,15 @@ nats:
       key: sys.creds
 
 # Trusted Operator mode settings.
-# operator:
-#   # # Reference to the system account jwt.
-#   # systemaccountjwt:
-#   #   configMap:
-#   #     name: nats-sys-jwt
-#   #     key: SYS.jwt
-#   #
-#   # # Reference to the Operator JWT.
-#   # operatorjwt:
-#   #   configMap:
-#   #     name: operator-jwt
-#   #     key: KO.jwt
+operator:
+  # Reference to the system account jwt.
+  systemaccountjwt:
+    configMap:
+      name: nats-sys-jwt
+      key: SYS.jwt
+  
+  # Reference to the Operator JWT.
+  operatorjwt:
+    configMap:
+      name: operator-jwt
+      key: KO.jwt
