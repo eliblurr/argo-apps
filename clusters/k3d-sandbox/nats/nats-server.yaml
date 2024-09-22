@@ -198,9 +198,10 @@ config:
   # }
   merge: 
     authorization:
+      token: $2a$11$ScPK1IPD6tkKyxUiNLSL3ulogGzaXmVsCtGChur/lRXQG0G8hx0A6
       users: 
         - user: a
-          password: a
+          password: a 
         # token: << $TOKEN >>
   patch: []
 
