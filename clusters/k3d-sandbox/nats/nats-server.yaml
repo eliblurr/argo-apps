@@ -198,7 +198,7 @@ config:
   # }
   merge: 
     authorization:
-      default_permissions:
+      << default_permissions >>:
         publish: SANDBOX.*
         subscribe: 
           - PUBLIC.>
