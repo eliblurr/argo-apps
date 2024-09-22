@@ -16,6 +16,9 @@ spec:
       targetRevision: v1.15.3
       helm:
         releaseName: cert-manager
+        parameters:
+          - name: installCRDs
+            value: 'true'
     # - repoURL: https://github.com/eliblurr/argo-apps.git
     #   targetRevision: main 
     #   path: clusters/k3d-sandbox/cert-manager
