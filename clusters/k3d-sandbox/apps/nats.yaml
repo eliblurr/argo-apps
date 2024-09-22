@@ -18,17 +18,10 @@ spec:
         releaseName: nats
         valueFiles:
           - $repo/clusters/k3d-sandbox/nats/nats-server.yaml
-    # - chart: nats-account-server
-    #   repoURL: https://nats-io.github.io/k8s/helm/charts/
-    #   targetRevision: 0.8.0
-    #   helm:
-    #     releaseName: nats-account-server
-    #     valueFiles:
-    #       - $repo/clusters/k3d-sandbox/nats/nats-account-server.yaml
     - repoURL: https://github.com/eliblurr/argo-apps.git
+      path: clusters/k3d-sandbox/nats
       targetRevision: main
       ref: repo
-    #   path: clusters/k3d-sandbox/nats
   destination:
     server: https://kubernetes.default.svc
     namespace: 'nats'
