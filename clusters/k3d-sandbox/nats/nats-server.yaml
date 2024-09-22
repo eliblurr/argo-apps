@@ -137,7 +137,7 @@ config:
     patch: []
 
   websocket:
-    enabled: false
+    enabled: true
     port: 8080
     tls:
       enabled: false
@@ -156,7 +156,7 @@ config:
     ############################################################
     # service must be enabled also
     ingress:
-      enabled: false
+      enabled: true
       # must contain at least 1 host otherwise ingress will not be created
       hosts: []
       path: /
