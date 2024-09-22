@@ -461,10 +461,8 @@ podTemplate:
 
 # headless service: primarily used by NATS Servers in the Stateful Set to discover one another. [Service Discovery]
 headlessService:
-  merge: {}
-  patch: []
   # defaults to "{{ include "nats.fullname" $ }}-headless"
-  name: nats-service-discovery
+  name: nats-discovery
 
 # config map
 configMap:
