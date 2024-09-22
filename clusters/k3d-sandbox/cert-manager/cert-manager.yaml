@@ -11,5 +11,5 @@ spec:
       name: ca-issuer-key  # Cert-Manager will create this secret
     solvers: 
       - http01:
-        ingress:
-          class: nginx 
+          ingress:
+            class: nginx 
