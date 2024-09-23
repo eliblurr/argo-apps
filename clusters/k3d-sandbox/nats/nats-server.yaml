@@ -126,7 +126,7 @@ config:
     ############################################################
     # service must be enabled also
     ingress:
-      enabled: true
+      enabled: false
       # must contain at least 1 host otherwise ingress will not be created
       hosts: []
       path: /
