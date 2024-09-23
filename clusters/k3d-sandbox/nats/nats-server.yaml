@@ -249,13 +249,16 @@ container:
   #         secretKeyRef:
   #           name: nats-auth
   #           key: token
-  env: 
-    TEST_PASS: changemenow
-    ADMIN_PASS: changemenow
+  env: {}
+    # TEST_PASS: changemenow
+    # ADMIN_PASS: changemenow
 
   # merge or patch the container
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
-  merge: {}
+  merge: 
+    envFrom:
+      secretRef:
+        name: nats-env-vars
   patch: 
     - op: add
       path: /env/-
