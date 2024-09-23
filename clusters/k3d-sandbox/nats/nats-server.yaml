@@ -377,7 +377,7 @@ natsBox:
         # set secretName in order to mount an existing secret to dir
         secretName: nats-box-default-context-credentials
         # defaults to /etc/nats-creds/<context-name>
-        dir:
+        dir: /etc/nats-creds/default/
         key: nats.creds
       # merge or patch the context
       # https://docs.nats.io/using-nats/nats-tools/nats_cli#nats-contexts
