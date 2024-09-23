@@ -14,7 +14,6 @@ global:
 ################################################################################
 nameOverride: nats
 fullnameOverride: nats
-# override the namespace that resources are installed into
 namespaceOverride: 
 
 # reference a common CA Certificate or Bundle in all nats config `tls` blocks and nats-box contexts
@@ -161,8 +160,7 @@ config:
     enabled: true
     port: 65432
 
-  # adds a prefix to the server name, which defaults to the pod name
-  # helpful for ensuring server name is unique in a super cluster
+  # adds a prefix to the server name, which defaults to the pod name helpful for ensuring server name is unique in a super cluster
   serverNamePrefix: ""
 
   # merge or patch the nats config
@@ -226,9 +224,7 @@ container:
     pullPolicy:
     registry:
 
-  # container port options
-  # must be enabled in the config section also
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#containerport-v1-core
+  # container port options must be enabled in the config section also -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#containerport-v1-core
   ports:
     nats: {}
     leafnodes: {}
@@ -249,22 +245,14 @@ container:
   #         secretKeyRef:
   #           name: nats-auth
   #           key: token
-  env: 
-    KK: changemenow
-    # ADMIN_PASS: changemenow
+  env: {}
 
-  # merge or patch the container
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
+  # merge or patch the container -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: 
     envFrom:
       - secretRef:
           name: nats-client-passwords
-  patch: 
-    - op: add
-      path: /env/-
-      value: 
-        name: test
-        value: test
+  patch: []
 
 ############################################################
 # stateful set -> pod template -> reloader container
@@ -303,7 +291,7 @@ service:
     cluster:
       enabled: false
     websocket:
-      enabled: false
+      enabled: true
     profiling:
       enabled: false
 
