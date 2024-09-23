@@ -258,7 +258,7 @@ container:
   merge: 
     envFrom:
       secretRef:
-        name: nats-env-vars
+        name: nats-client-passwords
   patch: 
     - op: add
       path: /env/-
