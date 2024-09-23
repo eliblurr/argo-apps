@@ -345,8 +345,7 @@ headlessService:
 # pod disruption budget
 podDisruptionBudget:
   enabled: true
-  # merge or patch the pod disruption budget
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#poddisruptionbudget-v1-policy
+  # merge or patch the pod disruption budget -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#poddisruptionbudget-v1-policy
   merge: {}
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}"
@@ -355,8 +354,7 @@ podDisruptionBudget:
 # service account
 serviceAccount:
   enabled: false
-  # merge or patch the service account
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceaccount-v1-core
+  # merge or patch the service account -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceaccount-v1-core
   merge: {}
   patch: []
   # defaults to "{{ include "nats.fullname" $ }}"
@@ -376,30 +374,11 @@ natsBox:
   contexts:
     default:
       creds:
-        # set contents in order to create a secret with the creds file contents
-        contents:
         # set secretName in order to mount an existing secret to dir
-        secretName:
+        secretName: nats-box-default-context-credentials
         # defaults to /etc/nats-creds/<context-name>
         dir:
         key: nats.creds
-      nkey:
-        # set contents in order to create a secret with the nkey file contents
-        contents:
-        # set secretName in order to mount an existing secret to dir
-        secretName:
-        # defaults to /etc/nats-nkeys/<context-name>
-        dir:
-        key: nats.nk
-      # used to connect with client certificates
-      tls:
-        # set secretName in order to mount an existing secret to dir
-        secretName:
-        # defaults to /etc/nats-certs/<context-name>
-        dir:
-        cert: tls.crt
-        key: tls.key
-
       # merge or patch the context
       # https://docs.nats.io/using-nats/nats-tools/nats_cli#nats-contexts
       merge: {}
@@ -417,12 +396,8 @@ natsBox:
       tag: 0.14.5
       pullPolicy:
       registry:
-
-    # env var map, see nats.env for an example
     env: {}
-
-    # merge or patch the container
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
+    # merge or patch the container -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
     merge: {}
     patch: []
 
@@ -474,49 +449,47 @@ natsBox:
     # defaults to "{{ include "nats.fullname" $ }}-box"
     name:
 
-
 ################################################################################
 # Extra user-defined resources
 ################################################################################
-#
-# add arbitrary user-generated resources
-# example:
-#
-# config:
-#   websocket:
-#     enabled: true
-# extraResources:
-# - apiVersion: networking.istio.io/v1beta1
-#   kind: VirtualService
-#   metadata:
-#     name:
-#       $tplYaml: >
-#         {{ include "nats.fullname" $ | quote }}
-#     labels:
-#       $tplYaml: |
-#         {{ include "nats.labels" $ }}
-#   spec:
-#     hosts:
-#     - demo.nats.io
-#     gateways:
-#     - my-gateway
-#     http:
-#     - name: default
-#       match:
-#       - name: root
-#         uri:
-#           exact: /
-#       route:
-#       - destination:
-#           host:
-#             $tplYaml: >
-#               {{ .Values.service.name | quote }}
-#           port:
-#             number:
-#               $tplYaml: >
-#                 {{ .Values.config.websocket.port }}
-#
+
 extraResources: []
-# create ingress here whick in turn creates ca
+# create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
+# create ingress for websocket
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nats
+#   labels: 
+#     app.kubernetes.io/name=nats 
+#     app.kubernetes.io/instance=nats
+#     app.kubernetes.io/component=nats 
+#   annotations:
+#     traefik.ingress.kubernetes.io/router.entrypoints: web  # Define entrypoint, typically HTTP
+#     traefik.ingress.kubernetes.io/websocket: "true"        # Enable WebSocket support
+# spec:
+#   # ingressClassName: 
+#   rules:
+#     - host: 
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: nats
+#                 port:
+#                   name: monitor
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: nats
+#                 port:
+#                   name: websocket
+#   tls:
+#     - secretName: 
+#       hosts:
