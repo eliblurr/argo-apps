@@ -61,6 +61,7 @@ config:
       merge: {}
       patch: []
         
+  # JetStream allows the NATS server to capture messages and replay them to consumers as needed
   jetstream:
     enabled: true
 
