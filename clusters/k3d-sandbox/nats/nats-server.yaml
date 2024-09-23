@@ -257,8 +257,8 @@ container:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: 
     envFrom:
-      secretRef:
-        name: nats-client-passwords
+      - secretRef:
+          name: nats-client-passwords
   patch: 
     - op: add
       path: /env/-
