@@ -361,8 +361,6 @@ serviceAccount:
   name:
 
 ############################################################
-# natsBox
-#
 # NATS Box Deployment and associated resources
 ############################################################
 natsBox:
