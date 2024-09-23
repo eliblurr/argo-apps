@@ -366,7 +366,7 @@ serviceAccount:
 # NATS Box Deployment and associated resources
 ############################################################
 natsBox:
-  enabled: true
+  enabled: false
 
   ############################################################
   # NATS contexts
@@ -374,15 +374,29 @@ natsBox:
   contexts:
     default:
       creds:
+        # set contents in order to create a secret with the creds file contents
+        contents:
         # set secretName in order to mount an existing secret to dir
-        secretName: nats-box-default-context-credentials
+        secretName:
         # defaults to /etc/nats-creds/<context-name>
-        dir: /etc/nats-creds/default/
+        dir:
         key: nats.creds
-      # merge or patch the context
-      # https://docs.nats.io/using-nats/nats-tools/nats_cli#nats-contexts
-      merge: {}
-      patch: []
+      nkey:
+        # set contents in order to create a secret with the nkey file contents
+        contents:
+        # set secretName in order to mount an existing secret to dir
+        secretName:
+        # defaults to /etc/nats-nkeys/<context-name>
+        dir:
+        key: nats.nk
+      # used to connect with client certificates
+      tls:
+        # set secretName in order to mount an existing secret to dir
+        secretName:
+        # defaults to /etc/nats-certs/<context-name>
+        dir:
+        cert: tls.crt
+        key: tls.key
 
   # name of context to select by default
   defaultContextName: default
