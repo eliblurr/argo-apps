@@ -249,8 +249,8 @@ container:
   #         secretKeyRef:
   #           name: nats-auth
   #           key: token
-  env: {}
-    # TEST_PASS: changemenow
+  env: 
+    KK: changemenow
     # ADMIN_PASS: changemenow
 
   # merge or patch the container
