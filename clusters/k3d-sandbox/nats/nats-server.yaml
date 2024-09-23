@@ -62,7 +62,7 @@ config:
       patch: []
         
   jetstream:
-    enabled: false
+    enabled: true
 
     fileStore:
       enabled: true
