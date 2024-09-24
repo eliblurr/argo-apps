@@ -25,10 +25,10 @@ jetstream:
     #
     # The credentials file to load in to connect to the NATS Server.
     #
-    credentials:
-      secret:
-        name: nats-sys-creds
-        key: sys.creds
+    # credentials:
+    #   secret:
+    #     name: nats-sys-creds
+    #     key: sys.creds
     #
 
   # TLS
