@@ -37,7 +37,6 @@ namespaced: true
 
 podAnnotations: 
   argocd.argoproj.io/sync-wave: "1"
-  # argocd.argoproj.io/hook: PostSync
 
 # Toggle to prevent the controller making changes to NATS streams/consumers.
 readOnly: false
