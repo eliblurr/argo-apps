@@ -9,11 +9,10 @@ jetstream:
     repository: natsio/jetstream-controller
     tag: 0.15.1
     pullPolicy: IfNotPresent
-    # registry: docker.io
 
   # NATS URL
   nats:
-    url: nats://$USERNAME:$PASSWORD@nats:4222
+    url: nats://nats:4222
 
     #
     # The nkey file to load in to connect to the NATS Server.
@@ -55,7 +54,7 @@ namespaced: true
 # nameOverride: ""
 # namespaceOverride: ""
 # imagePullSecrets: []
-# serviceAccountName: ""
+serviceAccountName: nats-js
 # # Toggle whether to automatically mount Service Account token in the pod
 # # not set means default value, boolean true/false overrides default value
 # # automountServiceAccountToken: true
@@ -70,83 +69,47 @@ namespaced: true
 # # additionalVolumeMounts are the additional volume mounts to add
 # additionalVolumeMounts: []
 
-# # Rules to be applied to ClusterRole or Role
-# # Set as a string so that it can be templated to allow further customization
-# rbacRules: |
-#   rules:
-#   - apiGroups:
-#     - ''
-#     resources:
-#     - events
-#     verbs:
-#     - create
-#     - update
-#     - patch
-#   - apiGroups:
-#     - ''
-#     resources:
-#     - secrets
-#     verbs:
-#     - get
-#     - watch
-#     - list
-#   - apiGroups:
-#     - jetstream.nats.io
-#     resources:
-#     - streams
-#     - streams/status
-#     - consumers
-#     - consumers/status
-#     - streamtemplates
-#     - streamtemplates/status
-#     - accounts
-#     verbs:
-#     - create
-#     - get
-#     - list
-#     - watch
-#     - patch
-#     - update
-#     - delete
+# Rules to be applied to ClusterRole or Role
+# Set as a string so that it can be templated to allow further customization
+rbacRules: |
+  rules:
+  - apiGroups:
+    - ''
+    resources:
+    - events
+    verbs:
+    - create
+    - update
+    - patch
+  - apiGroups:
+    - ''
+    resources:
+    - secrets
+    verbs:
+    - get
+    - watch
+    - list
+  - apiGroups:
+    - jetstream.nats.io
+    resources:
+    - streams
+    - streams/status
+    - consumers
+    - consumers/status
+    - streamtemplates
+    - streamtemplates/status
+    - accounts
+    verbs:
+    - create
+    - get
+    - list
+    - watch
+    - patch
+    - update
+    - delete
 
 podAnnotations: 
   argocd.argoproj.io/sync-wave: "1"
 
-# # Toggle whether to use setup a Pod Security Context
-# # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-# securityContext: {}
-# # securityContext:
-# #   fsGroup: 1000
-# #   runAsUser: 1000
-# #   runAsNonRoot: true
-
-# # Configure a container security context
-# # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
-# containerSecurityContext: {}
-# # containerSecurityContext:
-# #   allowPrivilegeEscalation: false
-# #   readOnlyRootFilesystem: true
-
-# # Affinity for pod assignment
-# # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-# affinity: {}
-
-# # Node labels for pod assignment
-# # Ref: https://kubernetes.io/docs/user-guide/node-selection/
-# nodeSelector: {}
-
-# # Node tolerations for server scheduling to nodes with taints
-# # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-# #
-# tolerations: []
-# #  - key: "key"
-# #    operator: "Equal|Exists"
-# #    value: "value"
-# #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
-
-# # Resource requests and limits for primary stan container
-# # ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-# resources: {}
-
-# # Toggle to prevent the controller making changes to NATS streams/consumers.
-# readOnly: false
+# Toggle to prevent the controller making changes to NATS streams/consumers.
+readOnly: false
