@@ -213,6 +213,8 @@ config:
         - user: admin
           password: << $ADMIN_PASS >>
           permissions: << $ADMIN >>
+        - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
+          permissions: << $ADMIN >>
   patch: []
 
 ############################################################
