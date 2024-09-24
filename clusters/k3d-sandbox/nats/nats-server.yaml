@@ -474,7 +474,7 @@ extraResources:
     spec:
       name: mystream
       subjects: ["orders.*"]
-      storage: memory
+      storage: fileStore
       maxAge: 1h
     
   - apiVersion: jetstream.nats.io/v1beta2
