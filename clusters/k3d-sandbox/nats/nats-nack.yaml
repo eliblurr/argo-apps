@@ -47,9 +47,7 @@ jetstream:
       timeout: 3
 
   # additional arguments to pass to the controller process
-  # additionalArgs: 
-  #   - --username=test
-  #   - --password=changeme
+  # additionalArgs: []
 
 # restrict the controller to only watch resources in it's current namespace
 namespaced: true
