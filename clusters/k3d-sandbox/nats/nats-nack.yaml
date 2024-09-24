@@ -13,7 +13,7 @@ jetstream:
 
   # NATS URL
   nats:
-    url: nats://nats:4222
+    url: nats://$USERNAME:$PASSWORD@nats:4222
 
     #
     # The nkey file to load in to connect to the NATS Server.
