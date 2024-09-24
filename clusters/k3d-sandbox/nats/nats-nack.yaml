@@ -48,9 +48,8 @@ jetstream:
 
   # additional arguments to pass to the controller process
   additionalArgs: 
-    --username=test
-    --password=changeme
-
+    - --username=test
+    - --password=changeme
 
 # restrict the controller to only watch resources in it's current namespace
 namespaced: true
