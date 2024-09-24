@@ -18,6 +18,13 @@ spec:
         releaseName: nats
         valueFiles:
           - $repo/clusters/k3d-sandbox/nats/nats-server.yaml
+    - chart: nack
+      repoURL: https://nats-io.github.io/k8s/helm/charts/
+      targetRevision: 0.26.1
+      helm:
+        releaseName: nack
+        valueFiles:
+          - $repo/clusters/k3d-sandbox/nats/nats-nack.yaml
     - repoURL: https://github.com/eliblurr/argo-apps.git
       path: clusters/k3d-sandbox/nats
       targetRevision: main
