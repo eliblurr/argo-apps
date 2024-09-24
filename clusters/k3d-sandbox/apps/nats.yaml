@@ -31,8 +31,8 @@ spec:
       ref: repo
       kustomize:
         commonAnnotations:
-          # argocd.argoproj.io/sync-wave: "-1"
-          argocd.argoproj.io/hook: PreSync
+          argocd.argoproj.io/sync-wave: "-1"
+          # argocd.argoproj.io/hook: PreSync
   destination:
     server: https://kubernetes.default.svc
     namespace: 'nats'
