@@ -109,7 +109,8 @@ namespaced: true
 #     - update
 #     - delete
 
-# podAnnotations: {}
+podAnnotations: 
+  argocd.argoproj.io/sync-wave: "1"
 
 # # Toggle whether to use setup a Pod Security Context
 # # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
