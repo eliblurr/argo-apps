@@ -22,6 +22,9 @@ spec:
       path: clusters/k3d-sandbox/nats
       targetRevision: main
       ref: repo
+      kustomize:
+        commonAnnotations:
+          argocd.argoproj.io/sync-wave: "-1"
   destination:
     server: https://kubernetes.default.svc
     namespace: 'nats'
