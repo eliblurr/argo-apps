@@ -197,24 +197,66 @@ config:
   # }
   # read about authorisation: https://docs.nats.io/running-a-nats-service/configuration/securing_nats/authorization
   merge: 
-    authorization:
-      default_permissions: # special entry - applies to all users that don't have specific permissions set
-        publish: SANDBOX.*
-        subscribe: 
-          - PUBLIC.>
-          - _INBOX.>
-          - SANDBOX.>
-      ADMIN:
-        publish: ">"
-        subscribe: ">"
-      users: 
-        - user: test
-          password: << $TEST_PASS >>
-        - user: admin
-          password: << $ADMIN_PASS >>
-          permissions: << $ADMIN >>
-        - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
-          permissions: << $ADMIN >>
+    accounts:
+      # ---
+      CREDIT:
+        ADMIN_PERMISSION:
+          publish: ">"
+          subscribe: ">"
+        users:
+          - user: admin
+            password: << $ADMIN_PASS >>
+            permissions: << $ADMIN_PERMISSION >>
+
+        # Imports
+        # Stream Imports: Allows the consumer account to subscribe to subjects exported by the provider account.
+        # Service Imports: Allows the consumer account to make requests to services exported by the provider account.
+        imports: 
+          - stream: "foo.>"
+      # ---
+      SANDBOX:
+        # Global permissions
+        default_permissions:
+          publish: SANDBOX.*
+          subscribe: 
+            - PUBLIC.>
+            - _INBOX.>
+            - SANDBOX.>
+        ADMIN_PERMISSION:
+          publish: ">"
+          subscribe: ">"
+        
+        # Users
+        users:
+          - user: test
+            password: << $TEST_PASS >>
+          - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
+            permissions: << $ADMIN >>
+        
+        # Exports
+        # Stream Exports: Allows other accounts to subscribe to subjects published by the provider account.
+        # Service Exports: Allows other accounts to make request-reply interactions with services provided by the provider account.
+        exports: 
+          - stream: "foo.>"
+
+    # authorization:
+    #   default_permissions: # special entry - applies to all users that don't have specific permissions set
+    #     publish: SANDBOX.*
+    #     subscribe: 
+    #       - PUBLIC.>
+    #       - _INBOX.>
+    #       - SANDBOX.>
+    #   ADMIN:
+    #     publish: ">"
+    #     subscribe: ">"
+    #   users: 
+    #     - user: test
+    #       password: << $TEST_PASS >>
+    #     - user: admin
+    #       password: << $ADMIN_PASS >>
+    #       permissions: << $ADMIN >>
+    #     - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
+    #       permissions: << $ADMIN >>
   patch: []
 
 ############################################################
@@ -478,6 +520,7 @@ extraResources:
       subjects: ["orders.*"]
       storage: file
       maxAge: 1h
+      account: SANDBOX
     
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
@@ -490,6 +533,7 @@ extraResources:
       deliverPolicy: last
       ackPolicy: none
       replayPolicy: instant
+      account: SANDBOX
 
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
@@ -502,6 +546,7 @@ extraResources:
       filterSubject: orders.received
       maxDeliver: 20
       ackPolicy: explicit
+      account: SANDBOX
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
