@@ -1,3 +1,4 @@
 resources:
   - ./secrets.yaml
-  - crds.yaml
+  - https://github.com/nats-io/nack/releases/latest/download/crds.yml
+  
