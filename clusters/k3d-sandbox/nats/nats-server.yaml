@@ -212,7 +212,9 @@ config:
         # Stream Imports: Allows the consumer account to subscribe to subjects exported by the provider account.
         # Service Imports: Allows the consumer account to make requests to services exported by the provider account.
         imports: 
-          - stream: "foo.>"
+          - stream: 
+              account: SANDBOX
+              subject: foo.>
       # ---
       SANDBOX:
         # Global permissions
