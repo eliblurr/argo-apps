@@ -150,7 +150,7 @@ config:
     patch: []
 
   monitor:
-    enabled: false
+    enabled: true
     port: 8222
     tls:
       # config.nats.tls must be enabled also
@@ -306,6 +306,24 @@ container:
     envFrom:
       - secretRef:
           name: nats-client-passwords
+    livenessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 60
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 5
+    readinessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    startupProbe:
+      failureThreshold: 90
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
   patch: []
 
 ############################################################
