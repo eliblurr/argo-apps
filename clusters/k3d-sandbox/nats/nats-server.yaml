@@ -231,7 +231,7 @@ config:
           - user: test
             password: << $TEST_PASS >>
           - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
-            permissions: << $ADMIN >>
+            permissions: << $ADMIN_PERMISSION >>
         
         # Exports
         # Stream Exports: Allows other accounts to subscribe to subjects published by the provider account.
