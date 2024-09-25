@@ -1,6 +1,6 @@
 resources:
   - ./secrets.yaml
-  - https://github.com/nats-io/nack/releases/tag/v0.16.0/download/crds.yml
+  - https://github.com/nats-io/nack/releases/v0.16.0/download/crds.yml
   # tag/v0.16.0
   # https://objects.githubusercontent.com/github-production-release-asset-2e65be/292137352/8ef4077b-33cf-4d70-a2ec-e8c442d5d7a3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20240925%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240925T095806Z&X-Amz-Expires=300&X-Amz-Signature=03b8d2d1bd11767fb7d60e5487acfc03338225bace059bd93ee80d5a8108e4a8&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dcrds.yml&response-content-type=application%2Foctet-stream
   # https://objects.githubusercontent.com/github-production-release-asset-2e65be/292137352/8ef4077b-33cf-4d70-a2ec-e8c442d5d7a3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20240925%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240925T095725Z&X-Amz-Expires=300&X-Amz-Signature=5d13dc48da3fefff94bea5ee02ec6026ee4ba28b81f5a2c3d8f7c32b583b37c0&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dcrds.yml&response-content-type=application%2Foctet-stream
