@@ -524,6 +524,8 @@ extraResources:
     kind: Stream
     metadata:
       name: mystream
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
     spec:
       name: mystream
       subjects: ["orders.*"]
@@ -535,6 +537,8 @@ extraResources:
     kind: Consumer
     metadata:
       name: my-push-consumer
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
     spec:
       streamName: mystream
       durableName: my-push-consumer
@@ -548,6 +552,8 @@ extraResources:
     kind: Consumer
     metadata:
       name: my-pull-consumer
+      annotations:
+        argocd.argoproj.io/sync-wave: "-1"
     spec:
       streamName: mystream
       durableName: my-pull-consumer
