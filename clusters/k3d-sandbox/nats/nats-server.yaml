@@ -306,19 +306,19 @@ container:
     envFrom:
       - secretRef:
           name: nats-client-passwords
-    # livenessProbe:
+    livenessProbe: null
     #   failureThreshold: 3
     #   initialDelaySeconds: 60
     #   periodSeconds: 30
     #   successThreshold: 1
     #   timeoutSeconds: 5
-    # readinessProbe:
+    readinessProbe: null
     #   failureThreshold: 3
     #   initialDelaySeconds: 60
     #   periodSeconds: 10
     #   successThreshold: 1
     #   timeoutSeconds: 5
-    # startupProbe:
+    startupProbe: null
     #   failureThreshold: 90
     #   initialDelaySeconds: 60
     #   periodSeconds: 10
