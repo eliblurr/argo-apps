@@ -200,6 +200,7 @@ config:
     accounts:
       # ---
       CREDIT:
+        jetstream: enabled
         ADMIN_PERMISSION:
           publish: ">"
           subscribe: ">"
@@ -217,6 +218,7 @@ config:
               subject: foo.>
       # ---
       SANDBOX:
+        jetstream: enabled
         # Global permissions
         default_permissions:
           publish: 
