@@ -150,7 +150,7 @@ config:
     patch: []
 
   monitor:
-    enabled: true
+    enabled: false
     port: 8222
     tls:
       # config.nats.tls must be enabled also
