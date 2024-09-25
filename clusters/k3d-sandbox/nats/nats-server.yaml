@@ -199,23 +199,23 @@ config:
   merge: 
     accounts:
       # ---
-      CREDIT:
-        jetstream: enabled
-        ADMIN_PERMISSION:
-          publish: ">"
-          subscribe: ">"
-        users:
-          - user: admin
-            password: << $ADMIN_PASS >>
-            permissions: << $ADMIN_PERMISSION >>
+      # CREDIT:
+      #   jetstream: enabled
+      #   ADMIN_PERMISSION:
+      #     publish: ">"
+      #     subscribe: ">"
+      #   users:
+      #     - user: admin
+      #       password: << $ADMIN_PASS >>
+      #       permissions: << $ADMIN_PERMISSION >>
 
-        # Imports
-        # Stream Imports: Allows the consumer account to subscribe to subjects exported by the provider account.
-        # Service Imports: Allows the consumer account to make requests to services exported by the provider account.
-        imports: 
-          - stream: 
-              account: SANDBOX
-              subject: foo.>
+      #   # Imports
+      #   # Stream Imports: Allows the consumer account to subscribe to subjects exported by the provider account.
+      #   # Service Imports: Allows the consumer account to make requests to services exported by the provider account.
+      #   imports: 
+      #     - stream: 
+      #         account: SANDBOX
+      #         subject: foo.>
       # ---
       SANDBOX:
         jetstream: enabled
