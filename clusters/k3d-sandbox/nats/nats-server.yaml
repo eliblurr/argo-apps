@@ -245,8 +245,8 @@ config:
         # Service Exports: Allows other accounts to make request-reply interactions with services provided by the provider account.
         exports: 
           - stream: "foo.>"
-            accounts: 
-              - CREDIT
+            # accounts: 
+            #   - CREDIT
 
     # authorization:
     #   default_permissions: # special entry - applies to all users that don't have specific permissions set
