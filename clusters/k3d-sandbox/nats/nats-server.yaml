@@ -219,14 +219,17 @@ config:
       SANDBOX:
         # Global permissions
         default_permissions:
-          publish: SANDBOX.*
+          publish: 
+            - SANDBOX.*
           subscribe: 
             - PUBLIC.>
             - _INBOX.>
             - SANDBOX.>
         ADMIN_PERMISSION:
-          publish: ">"
-          subscribe: ">"
+          publish: 
+            - ">"
+          subscribe: 
+            - ">"
         
         # Users
         users:
