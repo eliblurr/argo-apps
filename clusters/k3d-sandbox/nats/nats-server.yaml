@@ -310,7 +310,7 @@ container:
           name: nats-client-passwords
     livenessProbe: 
       httpGet:
-        path: /healthz?js-server-only=true
+        path: /healthz
         # port: monitor
       #
       # failureThreshold: 30
