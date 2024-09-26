@@ -23,6 +23,13 @@ namespaced: true
 
 podAnnotations: 
   argocd.argoproj.io/sync-wave: "1"
+  ad.datadoghq.com/jsc.logs: |-
+    [{
+      "source": "go",
+      "service": "nats-jsc",
+      "tags": ["env:dev", "team:dev"],
+      "auto_multi_line_detection": true
+    }]
 
 # Toggle to prevent the controller making changes to NATS streams/consumers.
 readOnly: false
