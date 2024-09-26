@@ -532,15 +532,6 @@ natsBox:
 
 extraResources: 
   - apiVersion: jetstream.nats.io/v1beta2
-    kind: Account
-    metadata:
-      name: dummy
-    spec:
-      name: DUMMY
-      servers:
-        - nats://nats:4222
-
-  - apiVersion: jetstream.nats.io/v1beta2
     kind: Stream
     metadata:
       name: mystream
