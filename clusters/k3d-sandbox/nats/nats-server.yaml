@@ -182,17 +182,9 @@ container:
 ############################################################
 service:
   enabled: true
-  # ports:
-  #   nats:
-  #     enabled: true
-  #   monitor:
-  #     enabled: true
-  #   cluster:
-  #     enabled: false
-  #   websocket:
-  #     enabled: true
-  #   profiling:
-  #     enabled: false
+  ports:
+    monitor:
+      enabled: true
 
 ############################################################
 # other nats extension points
