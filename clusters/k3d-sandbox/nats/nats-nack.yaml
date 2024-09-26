@@ -21,7 +21,7 @@ jetstream:
 # restrict the controller to only watch resources in it's current namespace
 namespaced: true
 
-nameOverride: nats-jsc
+# nameOverride: nats-jsc
 
 podAnnotations: 
   argocd.argoproj.io/sync-wave: "1"
