@@ -539,7 +539,7 @@ extraResources:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
       name: mystream
-      subjects: ["orders.*"]
+      subjects: ["SANDBOX.*"]
       storage: file
       maxAge: 1h
       account: SANDBOX
@@ -553,7 +553,7 @@ extraResources:
     spec:
       streamName: mystream
       durableName: my-push-consumer
-      deliverSubject: my-push-consumer.orders
+      deliverSubject: my-push-consumer.sandbox
       deliverPolicy: last
       ackPolicy: none
       replayPolicy: instant
@@ -569,7 +569,7 @@ extraResources:
       streamName: mystream
       durableName: my-pull-consumer
       deliverPolicy: all
-      filterSubject: orders.received
+      filterSubject: SANDBOX.*
       maxDeliver: 20
       ackPolicy: explicit
       account: SANDBOX
