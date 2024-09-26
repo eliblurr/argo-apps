@@ -535,11 +535,11 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Stream
     metadata:
-      name: mystream
+      name: sandbox
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      name: mystream
+      name: sandbox
       subjects: ["SANDBOX.*"]
       storage: file
       maxAge: 1h
@@ -548,13 +548,13 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: my-push-consumer
+      name: sandbox-push
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      streamName: mystream
-      durableName: my-push-consumer
-      deliverSubject: my-push-consumer.sandbox
+      streamName: sandbox
+      durableName: sandbox-push
+      deliverSubject: sandbox-push.sandbox
       deliverPolicy: last
       ackPolicy: none
       replayPolicy: instant
@@ -563,12 +563,12 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: my-pull-consumer
+      name: sandbox-pull
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      streamName: mystream
-      durableName: my-pull-consumer
+      streamName: sandbox
+      durableName: sandbox-pull
       deliverPolicy: all
       filterSubject: SANDBOX.*
       maxDeliver: 20
@@ -578,11 +578,11 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Stream
     metadata:
-      name: mystream
+      name: credit
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      name: mystream
+      name: credit
       subjects: ["CREDIT.*"]
       storage: file
       maxAge: 1h
@@ -591,13 +591,13 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: credit-push-consumer
+      name: credit-push
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      streamName: mystream
-      durableName: my-push-consumer
-      deliverSubject: my-push-consumer.credit
+      streamName: credit
+      durableName: credit-push
+      deliverSubject: credit-push.credit
       deliverPolicy: last
       ackPolicy: none
       replayPolicy: instant
@@ -606,12 +606,12 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: credit-pull-consumer
+      name: credit-pull
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
-      streamName: mystream
-      durableName: credit-pull-consumer
+      streamName: credit
+      durableName: credit-pull
       deliverPolicy: all
       filterSubject: CREDIT.*
       maxDeliver: 20
