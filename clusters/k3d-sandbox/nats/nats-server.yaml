@@ -534,7 +534,7 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Account
     metadata:
-      name: DUMMY
+      name: dummy
     spec:
       name: DUMMY
       servers:
