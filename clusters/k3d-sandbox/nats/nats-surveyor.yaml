@@ -3,17 +3,37 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "surveyor"
+fullnameOverride: "surveyor"
 
-podAnnotations: {}
+podAnnotations: 
+  ad.datadoghq.com/prometheus-prefect-exporter.logs: |-
+    [{
+      "source": "prometheus",
+      "service": "prometheus-prefect-exporter",
+      "tags": ["env:dev","team:credit"],
+      "auto_multi_line_detection": true
+    }]
+  ad.datadoghq.com/prometheus-prefect-exporter.checks: |-
+    {
+      "openmetrics": {
+        "init_config": {},
+        "instances": [
+          {
+            "openmetrics_endpoint": "http://%%host%%:8000/",
+            "namespace": "credit",
+            "metrics": [".*"]
+          }
+        ]
+      }
+    }
 
-podSecurityContext:
-  {}
-  # fsGroup: 2000
+# podSecurityContext:
+#   {}
+#   # fsGroup: 2000
 
-securityContext:
-  {}
+# securityContext:
+#   {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -25,44 +45,44 @@ securityContext:
 # not set means default value, boolean true/false overrides default value
 # automountServiceAccountToken: true
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+# serviceAccount:
+#   # Specifies whether a service account should be created
+#   create: true
+#   # Annotations to add to the service account
+#   annotations: {}
+#   # The name of the service account to use.
+#   # If not set and create is true, a name is generated using the fullname template
+#   name: ""
 
-service:
-  type: ClusterIP
-  port: 7777
+service: {}
+#   type: ClusterIP
+#   port: 7777
 
-serviceMonitor:
-  enabled: false
-  labels: {}
-  annotations: {}
-  # interval:
-  # scrapeTimeout:
-  relabelings: []
-  metricRelabelings: []
+# serviceMonitor:
+#   enabled: false
+#   labels: {}
+#   annotations: {}
+#   # interval:
+#   # scrapeTimeout:
+#   relabelings: []
+#   metricRelabelings: []
 
-ingress:
-  enabled: false
-  annotations:
-    {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+# ingress:
+#   enabled: false
+#   annotations:
+#     {}
+#     # kubernetes.io/ingress.class: nginx
+#     # kubernetes.io/tls-acme: "true"
+#   hosts:
+#     - host: chart-example.local
+#       paths: []
+#   tls: []
+#   #  - secretName: chart-example-tls
+#   #    hosts:
+#   #      - chart-example.local
 
-resources:
-  {}
+# resources:
+#   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -75,17 +95,17 @@ resources:
   #   memory: 128Mi
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 90
 
-nodeSelector: {}
+# nodeSelector: {}
 
-tolerations: []
+# tolerations: []
 
-affinity: {}
+# affinity: {}
 
 config:
   servers: "nats://nats:4222"
@@ -104,7 +124,7 @@ config:
 
   jetstream:
     enabled: true
-    # accounts:
+    accounts:
     # - name: test
     #   tls:
     #     secret:
