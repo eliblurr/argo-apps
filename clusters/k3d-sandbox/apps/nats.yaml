@@ -9,7 +9,7 @@ metadata:
   name: nats
   namespace: argocd
 spec:
-  project: in-cluster-apps
+  project: infra-dev-apps
   sources:
     - chart: nats
       repoURL: https://nats-io.github.io/k8s/helm/charts/

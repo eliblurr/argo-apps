@@ -36,3 +36,23 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'      
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra-dev-apps
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  description: Front Office Infrastucture Dev Applications
+  orphanedResources:
+    warn: false
+  destinations:
+    - name: '*'
+      namespace: '*'
+      server: '*'
+  sourceRepos:
+    - '*'
