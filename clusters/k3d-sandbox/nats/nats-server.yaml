@@ -591,7 +591,7 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: my-push-consumer
+      name: credit-push-consumer
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
@@ -606,12 +606,12 @@ extraResources:
   - apiVersion: jetstream.nats.io/v1beta2
     kind: Consumer
     metadata:
-      name: my-pull-consumer
+      name: credit-pull-consumer
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
     spec:
       streamName: mystream
-      durableName: my-pull-consumer
+      durableName: credit-pull-consumer
       deliverPolicy: all
       filterSubject: CREDIT.*
       maxDeliver: 20
