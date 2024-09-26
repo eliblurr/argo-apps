@@ -200,14 +200,6 @@ config:
     # default: SANDBOX
     accounts:
       # ---
-      # << $G >>:
-      #   Imports: 
-      #     - stream: 
-      #       account: SANDBOX
-      #       subject: ">"
-      #     - service: ">"
-
-      # ---
       CREDIT:
         jetstream: enabled
         ADMIN_PERMISSION:
@@ -316,7 +308,7 @@ container:
     envFrom:
       - secretRef:
           name: nats-client-passwords
-    livenessProbe: 
+    livenessProbe:
       failureThreshold: 30
       initialDelaySeconds: 600
       periodSeconds: 30
@@ -328,12 +320,12 @@ container:
       # periodSeconds: 10
       # successThreshold: 1
       # timeoutSeconds: 5
-    startupProbe: null
-      # failureThreshold: 90
-      # initialDelaySeconds: 60
-      # periodSeconds: 10
-      # successThreshold: 1
-      # timeoutSeconds: 5
+    startupProbe: 
+      failureThreshold: 90
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
   patch: []
 
 ############################################################
