@@ -76,68 +76,22 @@ config:
     port: 4222
     tls:
       enabled: false
-      # set secretName in order to mount an existing secret to dir
-      secretName:
-      dir: /etc/nats-certs/nats
-      cert: tls.crt
-      key: tls.key
 
   websocket:
     enabled: true
     port: 8080
     tls:
       enabled: false
-      # set secretName in order to mount an existing secret to dir
-      secretName:
-      dir: /etc/nats-certs/websocket
-      cert: tls.crt
-      key: tls.key
-      # merge or patch the tls config
-      # https://docs.nats.io/running-a-nats-service/configuration/securing_nats/tls
-      merge: {}
-      patch: []
-
-    ############################################################
-    # ingress
-    ############################################################
-    # service must be enabled also
-    ingress:
-      enabled: false
-      # must contain at least 1 host otherwise ingress will not be created
-      hosts: []
-      path: /
-      pathType: Exact
-      # sets to the ingress class name
-      className:
-      # set to an existing secret name to enable TLS on the ingress; applies to all hosts
-      tlsSecretName:
-
-      # merge or patch the ingress # use this to att annotations
-      # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#ingress-v1-networking-k8s-io
-      merge: {} 
-      patch: []
-      # defaults to "{{ include "nats.fullname" $ }}-ws"
-      name:
-
-    # merge or patch the websocket config
-    # https://docs.nats.io/running-a-nats-service/configuration/websocket/websocket_conf
-    merge: {}
-    patch: []
 
   monitor:
     enabled: true
     port: 8222
     tls:
-      # config.nats.tls must be enabled also
-      # when enabled, monitoring port will use HTTPS with the options from config.nats.tls
       enabled: false
 
   profiling:
     enabled: true
     port: 65432
-
-  # adds a prefix to the server name, which defaults to the pod name helpful for ensuring server name is unique in a super cluster
-  serverNamePrefix: ""
 
   # merge or patch the nats config
   # https://docs.nats.io/running-a-nats-service/configuration
@@ -282,41 +236,11 @@ service:
     profiling:
       enabled: false
 
-  # merge or patch the service
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#service-v1-core
-  merge: {}
-  patch: []
-  # defaults to "{{ include "nats.fullname" $ }}"
-  name:
-
 ############################################################
 # other nats extension points
 ############################################################
-# stateful set
-statefulSet:
-  # merge or patch the stateful set
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#statefulset-v1-apps
-  merge: {}
-  patch: []
-  # defaults to "{{ include "nats.fullname" $ }}"
-  name:
-
 # stateful set -> pod template
 podTemplate:
-  # adds a hash of the ConfigMap as a pod annotation
-  # this will cause the StatefulSet to roll when the ConfigMap is updated
-  configChecksumAnnotation: true
-
-  # map of topologyKey: topologySpreadConstraint
-  # labelSelector will be added to match StatefulSet pods
-  #
-  # topologySpreadConstraints:
-  #   kubernetes.io/hostname:
-  #     maxSkew: 1
-  #
-  topologySpreadConstraints: {}
-
-  # merge or patch the pod template
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
   merge: {}
   patch: 
@@ -332,11 +256,6 @@ headlessService:
 # pod disruption budget
 podDisruptionBudget:
   enabled: true
-  # merge or patch the pod disruption budget -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#poddisruptionbudget-v1-policy
-  merge: {}
-  patch: []
-  # defaults to "{{ include "nats.fullname" $ }}"
-  name:
 
 ############################################################
 # NATS Box Deployment and associated resources
