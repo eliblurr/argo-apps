@@ -238,6 +238,7 @@ config:
         users:
           - user: test
             password: << $TEST_PASS >>
+            permissions: << $ADMIN_PERMISSION >>
           - nkey: << UDVBS5TSVT6JCMDC2O3WFOB52RI2F3KDHSYCKOVGZLHQOJSRO7QTM6JF >>
             permissions: << $ADMIN_PERMISSION >>
         
