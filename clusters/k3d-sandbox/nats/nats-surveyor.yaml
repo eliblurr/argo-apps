@@ -3,14 +3,6 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
-image:
-  repository: natsio/nats-surveyor
-  tag: 0.6.0
-  pullPolicy: IfNotPresent
-  # registry: docker.io
-
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -96,14 +88,11 @@ tolerations: []
 affinity: {}
 
 config:
-  # Required.
   servers: "nats://nats:4222"
-
-  # Polling timeout
   timeout: 3s
 
   # Expected number of servers
-  expectedServers: 1
+  expectedServers: 3
 
   # Enable monitoring account metrics.
   accounts: true
