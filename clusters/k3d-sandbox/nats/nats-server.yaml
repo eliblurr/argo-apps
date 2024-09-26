@@ -318,18 +318,18 @@ container:
       # periodSeconds: 30
       # successThreshold: 1
       # timeoutSeconds: 5
-    readinessProbe: null
-      # httpGet:
-      #       path: /healthz?js-server-only=true
+    readinessProbe:
+      httpGet:
+            path: /healthz?js-server-only=true
       #       port: monitor
       # failureThreshold: 3
       # initialDelaySeconds: 60
       # periodSeconds: 10
       # successThreshold: 1
       # timeoutSeconds: 5
-    startupProbe: null
-      # httpGet:
-      #       path: /healthz
+    startupProbe: 
+      httpGet:
+        path: /healthz?js-server-only=true
       #       port: monitor
       # failureThreshold: 90
       # initialDelaySeconds: 600
