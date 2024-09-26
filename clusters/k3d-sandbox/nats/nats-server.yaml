@@ -182,17 +182,17 @@ container:
 ############################################################
 service:
   enabled: true
-  ports:
-    nats:
-      enabled: true
-    monitor:
-      enabled: true
-    cluster:
-      enabled: false
-    websocket:
-      enabled: true
-    profiling:
-      enabled: false
+  # ports:
+  #   nats:
+  #     enabled: true
+  #   monitor:
+  #     enabled: true
+  #   cluster:
+  #     enabled: false
+  #   websocket:
+  #     enabled: true
+  #   profiling:
+  #     enabled: false
 
 ############################################################
 # other nats extension points
@@ -202,9 +202,9 @@ podTemplate:
   # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
   merge: {}
   patch: 
-    - op: add
-      path: /metadata/annotations/test-annotation
-      value: "new-value"
+    # - op: add
+    #   path: /metadata/annotations/test-annotation
+    #   value: "new-value"
     - op: add
       path: /metadata/annotations/ad.datadoghq.com~1nats.logs
       value: |-
@@ -221,8 +221,8 @@ headlessService:
   name: nats-discovery
 
 # pod disruption budget
-podDisruptionBudget:
-  enabled: true
+# podDisruptionBudget:
+#   enabled: true
 
 ############################################################
 # NATS Box Deployment and associated resources
