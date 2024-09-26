@@ -47,7 +47,7 @@ service:
   port: 7777
 
 serviceMonitor:
-  enabled: true
+  enabled: false
   labels: {}
   annotations: {}
   # interval:
