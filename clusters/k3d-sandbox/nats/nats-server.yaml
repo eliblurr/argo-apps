@@ -1,33 +1,8 @@
 ################################################################################
-# Global options
-################################################################################
-global:
-  image:
-    pullPolicy:
-    pullSecretNames: []
-    registry:
-  # global labels will be applied to all resources deployed by the chart
-  labels: {}
-
-################################################################################
 # Common options
 ################################################################################
 nameOverride: nats
 fullnameOverride: nats
-namespaceOverride: 
-
-# reference a common CA Certificate or Bundle in all nats config `tls` blocks and nats-box contexts
-# note: `tls.verify` still must be set in the appropriate nats config `tls` blocks to require mTLS
-tlsCA:
-  enabled: false
-  # set configMapName in order to mount an existing configMap to dir
-  configMapName:
-  # set secretName in order to mount an existing secretName to dir
-  secretName:
-  # directory to mount the configMap or secret to
-  dir: /etc/nats-ca-cert
-  # key in the configMap or secret that contains the CA Certificate or Bundle
-  key: ca.crt
 
 ############################################################
 # NATS config
@@ -275,35 +250,6 @@ config:
 # stateful set -> pod template -> nats container
 ############################################################
 container:
-  image:
-    repository: nats
-    tag: 2.10.20-alpine
-    pullPolicy:
-    registry:
-
-  # container port options must be enabled in the config section also -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#containerport-v1-core
-  ports:
-    nats: {}
-    leafnodes: {}
-    websocket: {}
-    mqtt: {}
-    cluster: {}
-    gateway: {}
-    monitor: {}
-    profiling: {}
-
-  # map with key as env var name, value can be string or map
-  # example:
-  #
-  #   env:
-  #     GOMEMLIMIT: 7GiB
-  #     TOKEN:
-  #       valueFrom:
-  #         secretKeyRef:
-  #           name: nats-auth
-  #           key: token
-  env: {}
-
   # merge or patch the container -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
   merge: 
     envFrom:
@@ -318,31 +264,6 @@ container:
     startupProbe: 
       httpGet:
         path: /healthz
-  patch: []
-
-############################################################
-# stateful set -> pod template -> reloader container
-############################################################
-reloader:
-  enabled: true
-  image:
-    repository: natsio/nats-server-config-reloader
-    tag: 0.15.1
-    pullPolicy:
-    registry:
-
-  # env var map, see nats.env for an example
-  env: {}
-
-  # all nats container volume mounts with the following prefixes
-  # will be mounted into the reloader container
-  natsVolumeMountPrefixes:
-  - /etc/
-
-  # merge or patch the container
-  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
-  merge: {}
-  patch: []
 
 ############################################################
 # service
@@ -417,119 +338,11 @@ podDisruptionBudget:
   # defaults to "{{ include "nats.fullname" $ }}"
   name:
 
-# service account
-serviceAccount:
-  enabled: false
-  # merge or patch the service account -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceaccount-v1-core
-  merge: {}
-  patch: []
-  # defaults to "{{ include "nats.fullname" $ }}"
-  name:
-
 ############################################################
 # NATS Box Deployment and associated resources
 ############################################################
 natsBox:
   enabled: false
-
-  ############################################################
-  # NATS contexts
-  ############################################################
-  contexts:
-    default:
-      creds:
-        # set contents in order to create a secret with the creds file contents
-        contents:
-        # set secretName in order to mount an existing secret to dir
-        secretName:
-        # defaults to /etc/nats-creds/<context-name>
-        dir:
-        key: nats.creds
-      nkey:
-        # set contents in order to create a secret with the nkey file contents
-        contents:
-        # set secretName in order to mount an existing secret to dir
-        secretName:
-        # defaults to /etc/nats-nkeys/<context-name>
-        dir:
-        key: nats.nk
-      # used to connect with client certificates
-      tls:
-        # set secretName in order to mount an existing secret to dir
-        secretName:
-        # defaults to /etc/nats-certs/<context-name>
-        dir:
-        cert: tls.crt
-        key: tls.key
-
-  # name of context to select by default
-  defaultContextName: default
-
-  ############################################################
-  # deployment -> pod template -> nats-box container
-  ############################################################
-  container:
-    image:
-      repository: natsio/nats-box
-      tag: 0.14.5
-      pullPolicy:
-      registry:
-    env: {}
-    # merge or patch the container -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#container-v1-core
-    merge: {}
-    patch: []
-
-  ############################################################
-  # other nats-box extension points
-  ############################################################
-
-  # deployment
-  deployment:
-    # merge or patch the deployment
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#deployment-v1-apps
-    merge: {}
-    patch: []
-    # defaults to "{{ include "nats.fullname" $ }}-box"
-    name:
-
-  # deployment -> pod template
-  podTemplate:
-    # merge or patch the pod template
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#pod-v1-core
-    merge: {}
-    patch: []
-
-  # contexts secret
-  contextsSecret:
-    # merge or patch the context secret
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#secret-v1-core
-    merge: {}
-    patch: []
-    # defaults to "{{ include "nats.fullname" $ }}-box-contexts"
-    name:
-
-  # contents secret
-  contentsSecret:
-    # merge or patch the contents secret
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#secret-v1-core
-    merge: {}
-    patch: []
-    # defaults to "{{ include "nats.fullname" $ }}-box-contents"
-    name:
-
-  # service account
-  serviceAccount:
-    enabled: false
-    # merge or patch the service account
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#serviceaccount-v1-core
-    merge: {}
-    patch: []
-    # defaults to "{{ include "nats.fullname" $ }}-box"
-    name:
-
-################################################################################
-# Extra user-defined resources
-################################################################################
 
 extraResources: 
   - apiVersion: jetstream.nats.io/v1beta2
@@ -617,42 +430,8 @@ extraResources:
       maxDeliver: 20
       ackPolicy: explicit
       account: CREDIT
+
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
 # create ingress for websocket
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: nats
-#   labels: 
-#     app.kubernetes.io/name=nats 
-#     app.kubernetes.io/instance=nats
-#     app.kubernetes.io/component=nats 
-#   annotations:
-#     traefik.ingress.kubernetes.io/router.entrypoints: web  # Define entrypoint, typically HTTP
-#     traefik.ingress.kubernetes.io/websocket: "true"        # Enable WebSocket support
-# spec:
-#   # ingressClassName: 
-#   rules:
-#     - host: 
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: nats
-#                 port:
-#                   name: monitor
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: nats
-#                 port:
-#                   name: websocket
-#   tls:
-#     - secretName: 
-#       hosts:
