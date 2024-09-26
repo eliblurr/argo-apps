@@ -150,7 +150,7 @@ config:
     patch: []
 
   monitor:
-    enabled: false
+    enabled: true
     port: 8222
     tls:
       # config.nats.tls must be enabled also
@@ -197,7 +197,7 @@ config:
   # }
   # read about authorisation: https://docs.nats.io/running-a-nats-service/configuration/securing_nats/authorization
   merge: 
-    default: SANDBOX
+    # default: SANDBOX
     accounts:
       # ---
       CREDIT:
