@@ -316,7 +316,8 @@ container:
             path: /healthz?js-server-only=true
     startupProbe: 
       httpGet:
-        path: /healthz?js-server-only=true
+        path: /healthz
+        # ?js-server-only=true
   patch: []
 
 ############################################################
