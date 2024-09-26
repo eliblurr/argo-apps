@@ -197,7 +197,6 @@ config:
   # }
   # read about authorisation: https://docs.nats.io/running-a-nats-service/configuration/securing_nats/authorization
   merge: 
-    jetstream: true
     accounts:
       # ---
       CREDIT:
