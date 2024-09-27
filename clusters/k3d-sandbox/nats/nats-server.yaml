@@ -126,7 +126,7 @@ config:
           - user: test
             password: << $TEST_PASS >>
             permissions: << $ADMIN_PERMISSION >>
-          - nkey: << UBTXST6XAVW46FQP4S44672UFXU53KIVXJYQ6IZT7XGIZRIFV5WP4FG2 >>
+          - nkey: << UATAYDNXK63T2MNEYGWBCGORVSU3FLB4BXB5OSIB5PQTL4HFQOJUQOW2 >>
             permissions: << $ADMIN_PERMISSION >>
         
         # Exports
