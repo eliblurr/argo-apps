@@ -321,20 +321,16 @@ extraResources:
       #       - nats-socket.bhe-fo-main-dev.brevanhoward.io # (Subject Alternative Name) SAN added in the cert by default, no need for annotation. -> https://cert-manager.io/docs/usage/ingress/#supported-annotations
       #     secretName: nats
       rules:
-        - host: nats-socket.io
           http:
             paths:
-              - path: /
+              - path: /ws
                 pathType: Prefix
                 backend:
                   service:
                     name: nats
                     port:
                       name: websocket
-        - host: nats-monitor.io
-          http:
-            paths:
-              - path: /
+              - path: /monitor
                 pathType: Prefix
                 backend:
                   service:
