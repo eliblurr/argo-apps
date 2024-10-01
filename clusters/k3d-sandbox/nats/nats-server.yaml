@@ -309,6 +309,38 @@ extraResources:
       ackPolicy: explicit
       account: CREDIT
 
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: nats
+    spec:
+      # tls:
+      #   - hosts:
+      #       - nats.bhe-fo-main-dev.brevanhoward.io
+      #       - nats-monitor.bhe-fo-main-dev.brevanhoward.io # (Subject Alternative Name) SAN added in the cert by default, no need for annotation. -> https://cert-manager.io/docs/usage/ingress/#supported-annotations
+      #       - nats-socket.bhe-fo-main-dev.brevanhoward.io # (Subject Alternative Name) SAN added in the cert by default, no need for annotation. -> https://cert-manager.io/docs/usage/ingress/#supported-annotations
+      #     secretName: nats
+      rules:
+        - host: nats-socket.bhe-fo-main-dev.brevanhoward.io
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: nats
+                    port:
+                      name: websocket
+        - host: nats-monitor.bhe-fo-main-dev.brevanhoward.io
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: nats
+                    port:
+                      name: monitor
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
