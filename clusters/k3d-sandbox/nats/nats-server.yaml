@@ -323,20 +323,34 @@ extraResources:
       rules:
           http:
             paths:
-              - path: "/ws"
+              - path: /socket
                 pathType: Prefix
                 backend:
                   service:
                     name: nats
                     port:
                       name: websocket
-              - path: "/monitor"
+              - path: /monitor
                 pathType: Prefix
                 backend:
                   service:
                     name: nats
                     port:
                       name: monitor
+              # - path: "/ws"
+              #   pathType: Prefix
+              #   backend:
+              #     service:
+              #       name: nats
+              #       port:
+              #         name: websocket
+              # - path: "/monitor"
+              #   pathType: Prefix
+              #   backend:
+              #     service:
+              #       name: nats
+              #       port:
+              #         name: monitor
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
