@@ -17,7 +17,8 @@ metadata:
   name: traefik-web-service
 
 spec:
-  type: LoadBalancer
+  type: ExternalName
+  externalName: nats.local
   ports:
     - targetPort: web
       port: 80

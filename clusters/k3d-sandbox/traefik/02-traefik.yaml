@@ -23,6 +23,7 @@ spec:
             - --api.insecure
             - --providers.kubernetesingress
             - --entryPoints.web.address=:80
+            - --entryPoints.tcpep.address=:3179
           ports:
             - name: web
               containerPort: 80
