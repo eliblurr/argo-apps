@@ -323,14 +323,14 @@ extraResources:
       rules:
           http:
             paths:
-              - path: /ws
+              - path: "/ws"
                 pathType: Prefix
                 backend:
                   service:
                     name: nats
                     port:
                       name: websocket
-              - path: /monitor
+              - path: "/monitor"
                 pathType: Prefix
                 backend:
                   service:
