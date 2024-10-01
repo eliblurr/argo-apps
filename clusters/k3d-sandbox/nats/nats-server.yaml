@@ -313,6 +313,8 @@ extraResources:
     kind: Ingress
     metadata:
       name: nats
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: web
     spec:
       rules:
         - host: nats.local
