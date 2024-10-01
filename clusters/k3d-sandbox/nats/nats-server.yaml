@@ -314,14 +314,8 @@ extraResources:
     metadata:
       name: nats
     spec:
-      # tls:
-      #   - hosts:
-      #       - nats.bhe-fo-main-dev.brevanhoward.io
-      #       - nats-monitor.bhe-fo-main-dev.brevanhoward.io # (Subject Alternative Name) SAN added in the cert by default, no need for annotation. -> https://cert-manager.io/docs/usage/ingress/#supported-annotations
-      #       - nats-socket.bhe-fo-main-dev.brevanhoward.io # (Subject Alternative Name) SAN added in the cert by default, no need for annotation. -> https://cert-manager.io/docs/usage/ingress/#supported-annotations
-      #     secretName: nats
       rules:
-          - http:
+        - http:
             paths:
               - path: /socket
                 pathType: Prefix
@@ -337,20 +331,6 @@ extraResources:
                     name: nats
                     port:
                       name: monitor
-              # - path: "/ws"
-              #   pathType: Prefix
-              #   backend:
-              #     service:
-              #       name: nats
-              #       port:
-              #         name: websocket
-              # - path: "/monitor"
-              #   pathType: Prefix
-              #   backend:
-              #     service:
-              #       name: nats
-              #       port:
-              #         name: monitor
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
