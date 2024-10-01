@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: in-cluster-apps
+  source:
+    repoURL: https://github.com/eliblurr/argo-apps.git
+    targetRevision: main
+    path: clusters/k3d-sandbox/traefik
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: 'default'
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - Validate=false
