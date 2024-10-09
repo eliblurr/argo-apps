@@ -317,7 +317,7 @@ extraResources:
         traefik.ingress.kubernetes.io/router.entrypoints: web
     spec:
       rules:
-        - host: nats.local
+        - host: nats-local
           http:
             paths:
               - path: /socket
@@ -334,6 +334,25 @@ extraResources:
                     name: nats
                     port:
                       name: monitor
+
+  # - apiVersion: traefik.io/v1alpha1
+  #   kind: IngressRouteTCP
+  #   metadata:
+  #     name: nats-tcp
+  #   spec:
+  #     entryPoints:
+  #       - websecure
+  #     routes:
+  #     - match: HostSNI(`nats.bhe-fo-main-dev.brevanhoward.io`)
+  #       priority: 10
+  #       services:
+  #       - name: nats
+  #         port: nats
+  #         weight: 10
+
+  #     tls:
+  #       secretName: nats
+  #       passthrough: false
 # create ingress here which in turn creates ca
 # USE local cert issuer to generate cert bundle
 # ingress auth middleware for monitor
