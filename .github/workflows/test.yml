@@ -8,6 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      REPO: ${{ github.repository }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -18,3 +20,6 @@ jobs:
 
       - name: Print the repository name in lowercase
         run: 'echo "Repository name in lowercase: $REPO_NAME"'
+
+      - name: Global - Print the repository name in lowercase
+        run: 'echo "Global -> $REPO"'

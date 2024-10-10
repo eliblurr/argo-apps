@@ -317,7 +317,7 @@ extraResources:
         traefik.ingress.kubernetes.io/router.entrypoints: web
     spec:
       rules:
-        - host: nats-local
+        - host: localhost
           http:
             paths:
               - path: /socket
