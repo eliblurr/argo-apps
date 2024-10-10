@@ -23,7 +23,9 @@ jobs:
 
       - name: Convert Env repository name to lowercase and set as global environment variable
         run: |
-          echo "REPO=$(echo ${{ env.REPO }} | tr '[:upper:]' )" >> $GITHUB_ENV
+          echo "REPO=xxx" >> $GITHUB_ENV
+
+      # $(echo ${{ env.REPO }} | tr '[:upper:]' )
 
       - name: Global - Print the repository name in lowercase
         run: echo ${{ env.REPO }}
