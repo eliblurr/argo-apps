@@ -22,4 +22,4 @@ jobs:
         run: 'echo "Repository name in lowercase: $REPO_NAME"'
 
       - name: Global - Print the repository name in lowercase
-        run: echo ${{ toLower(github.repository) }}
+        run: echo ${{ tolower(github.repository) }}
