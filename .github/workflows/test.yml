@@ -1,0 +1,20 @@
+name: Set Global Environment Variable
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Convert repository name to lowercase and set as global environment variable
+        run: |
+          echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Print the repository name in lowercase
+        run: 'echo "Repository name in lowercase: $REPO_NAME"'
