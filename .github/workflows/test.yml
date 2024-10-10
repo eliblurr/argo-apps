@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REPO: ${{ github.repository | tr '[:upper:]' }}
+      REPO: $(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
