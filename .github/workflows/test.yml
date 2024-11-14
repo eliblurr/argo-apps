@@ -2,6 +2,9 @@ name: Set Global Environment Variable
 
 on: 
   push:
+    branches:
+      - uat
+      - prod
   workflow_dispatch:
 
 jobs:
@@ -17,6 +20,10 @@ jobs:
       - name: Convert repository name to lowercase and set as global environment variable
         run: |
           echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Print run ID with suffix
+        run: | 
+          echo "Run ID with suffix: ${{ github.run_id }}${{ contains(github.ref_name, 'prod/') && '' || (contains(github.ref_name, 'uat/') && '-prerelease') || '-dev' }}"
 
       - name: Print the repository name in lowercase
         run: 'echo "Repository name in lowercase: $REPO_NAME"'
