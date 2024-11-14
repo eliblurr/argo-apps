@@ -3,8 +3,8 @@ name: Set Global Environment Variable
 on: 
   push:
     branches:
-      - uat
-      - prod
+      - uat/*
+      - prod/*
   workflow_dispatch:
 
 jobs:
