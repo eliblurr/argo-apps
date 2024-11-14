@@ -23,7 +23,7 @@ jobs:
 
       - name: Print run ID with suffix
         run: | 
-          echo "Run ID with suffix: ${{ github.run_id }}${{ contains(github.ref_name, 'prod/') && '-release' || contains(github.ref_name, 'uat/') && '-prerelease' || '-dev' }}"
+          echo "Run ID with suffix: ${{ github.run_id }}${{ contains(github.ref_name, 'prod/') && '-' || contains(github.ref_name, 'uat/') && '-prerelease' || '-dev' }}"
 
       - name: Print the repository name in lowercase
         run: 'echo "Repository name in lowercase: $REPO_NAME"'
